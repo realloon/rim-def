@@ -1,4 +1,4 @@
-import Definer from './define/Definer'
+import Definer from '../define/Definer'
 
 export function output(defs: Array<Definer>, fileName: string = 'bundle') {
   fileName = `./output/${fileName}.xml`

@@ -8,9 +8,5 @@
     "strict": true,
     "skipLibCheck": true,
     "experimentalDecorators": true
-    // "paths": {
-    //   "#define": ["./app/define/"],
-    //   "#helper": ["./app/helper/"]
-    // }
   }
 }
