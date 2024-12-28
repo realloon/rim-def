@@ -1,4 +1,4 @@
-import type { Bullet } from '../types/definition'
+import type { Bullet } from '../types'
 import Definer from './Definer'
 
 export default class BulletDef extends Definer {
