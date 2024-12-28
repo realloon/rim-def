@@ -1,0 +1,24 @@
+{
+  "name": "rim-def",
+  "version": "0.1.0",
+  "description": "Defs&Patches generator for RimWorld.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rim-def",
+    "rimworld"
+  ],
+  "author": "Vector",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "fast-xml-parser": "^4.5.1",
+    "typescript": "^5.7.2"
+  }
+}
