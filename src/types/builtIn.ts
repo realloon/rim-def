@@ -1,40 +1,40 @@
-type DefName = {
+export type DefName = {
   defName: string
 }
 
-type Description = {
+export type Description = {
   description: string
 }
 
-type Category = {
+export type Category = {
   category: 'Projectile'
 }
 
-type TickerType = {
+export type TickerType = {
   tickerType: 'Normal'
 }
 
-type AltitudeLayer = {
+export type AltitudeLayer = {
   altitudeLayer: 'Projectile'
 }
 
-type ThingClass = {
+export type ThingClass = {
   thingClass: 'Bullet'
 }
 
-type Label = {
+export type Label = {
   label: string
 }
 
-type UseHitPoints = {
+export type UseHitPoints = {
   useHitPoints: boolean
 }
 
-type NeverMultiSelect = {
+export type NeverMultiSelect = {
   neverMultiSelect: boolean
 }
 
-type GraphicData = {
+export type GraphicData = {
   graphicData: Partial<{
     texPath: string
     graphicClass: 'Graphic_Single'
@@ -42,7 +42,7 @@ type GraphicData = {
   }>
 }
 
-type Projectile = {
+export type Projectile = {
   projectile: Partial<{
     damageDef: 'Bullet'
     /** 基础单发伤害 */
@@ -56,15 +56,15 @@ type Projectile = {
   }>
 }
 
-type TechLevel = {
+export type TechLevel = {
   techLevel: 'Spacer'
 }
 
-type SoundInteract = {
+export type SoundInteract = {
   soundInteract: 'Interact_SMG' | 'Interact_Rifle'
 }
 
-type StatBases = {
+export type StatBases = {
   statBases: Partial<{
     /** 物理质量 */
     Mass: number
@@ -82,7 +82,7 @@ type StatBases = {
   }>
 }
 
-type RecipeMaker = {
+export type RecipeMaker = {
   recipeMaker: Partial<{
     /** 科研项目 */
     researchPrerequisite: 'ChargedShot' | 'GasOperation'
@@ -96,7 +96,7 @@ type RecipeMaker = {
   }>
 }
 
-type CostList = {
+export type CostList = {
   costList: Partial<{
     /** 钢铁 */
     Steel: number
@@ -109,13 +109,13 @@ type CostList = {
   }>
 }
 
-type WeaponTags = {
+export type WeaponTags = {
   weaponTags: Array<
     'Gun' | 'SpacerGun' | 'GunHeavy' | 'IndustrialGunAdvanced'
   >
 }
 
-type Verbs = {
+export type Verbs = {
   verbs: Array<
     Partial<{
       verbClass: 'Verb_Shoot'
@@ -133,7 +133,7 @@ type Verbs = {
   >
 }
 
-type Tools = {
+export type Tools = {
   tools: Array<
     Partial<{
       label: 'barrel' | 'stock'
@@ -144,30 +144,30 @@ type Tools = {
   >
 }
 
-type EquippedStatOffsets = {
+export type EquippedStatOffsets = {
   equippedStatOffsets: Partial<{
     /** 移动速度 */
     MoveSpeed: number
   }>
 }
 
-type Context = {
+export type Context = {
   context: 'MapOnly'
 }
 
-type EventNames = {
+export type EventNames = {
   eventNames: null
 }
 
-type MaxVoices = {
+export type MaxVoices = {
   maxVoices: number
 }
 
-type MaxSimultaneous = {
+export type MaxSimultaneous = {
   maxSimultaneous: number
 }
 
-type SubSounds = {
+export type SubSounds = {
   subSounds: Array<
     Partial<{
       grains: [
