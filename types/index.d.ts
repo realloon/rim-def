@@ -1,4 +1,4 @@
-export type Bullet = DefName &
+type Bullet = DefName &
   Label &
   GraphicData &
   Category &
@@ -9,7 +9,7 @@ export type Bullet = DefName &
   NeverMultiSelect &
   Projectile
 
-export type Gun = DefName &
+type Gun = DefName &
   Label &
   Description &
   TechLevel &
@@ -23,9 +23,9 @@ export type Gun = DefName &
   Tools &
   EquippedStatOffsets
 
-export type Sound = DefName &
+type Sound = DefName &
   Context &
   EventNames &
-  MaxVoices & 
+  MaxVoices &
   MaxSimultaneous &
   SubSounds
