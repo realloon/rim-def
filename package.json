@@ -1,6 +1,6 @@
 {
   "name": "rim-def",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Defs & Patches generator for RimWorld.",
   "main": "./src/index.ts",
   "keywords": [
