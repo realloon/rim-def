@@ -2,8 +2,7 @@
   "name": "rim-def",
   "version": "0.1.7",
   "description": "Defs&Patches generator for RimWorld.",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
