@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?><Defs><ThingDef ParentName="BaseHumanMakeableGun"><label>rifle</label><description>A rifle.</description><weaponTags><li>Gun</li></weaponTags><graphicData><texPath>path</texPath><graphicClass>Graphic_Single</graphicClass></graphicData></ThingDef></Defs>
