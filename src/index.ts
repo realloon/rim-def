@@ -1,6 +1,4 @@
-import GunDef from './define/GunDefiner'
-import BulletDef from './define/BulletDefiner'
-import SoundDef from './define/SoundDefiner'
+import { defineGun, defineBullet, defineSound } from './define'
 import { output } from './helper'
 
-export { GunDef, BulletDef, SoundDef, output }
+export { defineGun, defineBullet, defineSound, output }
