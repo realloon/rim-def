@@ -1,11 +1,8 @@
 {
   "name": "rim-def",
   "version": "0.1.9",
-  "description": "Defs&Patches generator for RimWorld.",
+  "description": "Defs & Patches generator for RimWorld.",
   "main": "./src/index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "rim-def",
     "rimworld"
@@ -14,10 +11,11 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/realloon/rim-def"
   },
-  "homepage": "",
+  "homepage": "https://github.com/realloon/rim-def",
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
