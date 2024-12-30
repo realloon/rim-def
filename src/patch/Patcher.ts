@@ -1,26 +1,9 @@
+import type { Operation, OperationOption } from '../types/patch'
 import { wrapArraysForXml } from '../helper'
 
-interface Operation {
-  '@_Class':
-    | 'PatchOperationAdd'
-    | 'PatchOperationRemove'
-    | 'PatchOperationReplace'
-  xpath: string
-  value?:
-    | string
-    | number
-    | boolean
-    | Record<string, unknown>
-    | Array<string>
-    | Array<Record<string, unknown>>
-}
-
-type PatchOption = Omit<Required<Operation>, '@_Class'>
-
 export default class Patcher {
-  // Sequence
   private matches?: Array<string>
-  private operations: Array<Operation> = []
+  private operations: Array<Operation> = [] // queue
 
   constructor(matches?: Array<string>) {
     this.matches = matches
@@ -44,7 +27,7 @@ export default class Patcher {
     })
   }
 
-  add({ xpath, value }: PatchOption) {
+  add({ xpath, value }: OperationOption) {
     const operation: Operation = {
       '@_Class': 'PatchOperationAdd',
       xpath,
@@ -61,7 +44,7 @@ export default class Patcher {
     this.operations.push(operation)
   }
 
-  replace({ xpath, value }: PatchOption) {
+  replace({ xpath, value }: OperationOption) {
     const operation: Operation = {
       '@_Class': 'PatchOperationReplace',
       xpath,

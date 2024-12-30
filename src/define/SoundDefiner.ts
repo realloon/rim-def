@@ -1,4 +1,4 @@
-import type { Sound } from '../types'
+import type { Sound } from '../types/def'
 import Definer from './Definer'
 
 export default class SoundDef extends Definer {
