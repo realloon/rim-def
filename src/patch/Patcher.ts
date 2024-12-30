@@ -9,22 +9,21 @@ export default class Patcher {
     this.matches = matches
   }
 
-  static bundle(patcher: Patcher) {
-    if (!patcher.matches) {
-      return { Operation: wrapArraysForXml(patcher.operations) } // it is work.
-    }
+  static bundle(patchers: Array<Patcher>) {
+    const operations = patchers.flatMap(({ matches, operations }: any) => {
+      if (!matches) return operations
 
-    // Use sequence.
-    return wrapArraysForXml({
-      Operation: {
+      return {
         '@_Class': 'PatchOperationFindMod',
-        mods: patcher.matches,
+        mods: matches,
         match: {
           '@_Class': 'PatchOperationSequence',
-          operations: patcher.operations,
+          operations,
         },
-      },
+      }
     })
+
+    return { Patch: { Operation: wrapArraysForXml(operations) } }
   }
 
   add({ xpath, value }: OperationOption) {

@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'fs/promises'
 import { dirname } from 'path'
 import Definer from '../define/Definer'
+import info from './info'
 
 export default async function output(
   defs: Array<Definer>,
@@ -12,10 +13,15 @@ export default async function output(
 
   await mkdir(dirname(path), { recursive: true })
   await writeFile(path, result)
-  console.info(
-    '\x1b[32m%s\x1b[0m',
-    'Success',
-    '\x1b[0m%s\x1b[0m',
-    `The packaged results have been output to: ${path}.`
-  )
+
+  info({
+    state: 'Success',
+    message: `The packaged results have been output to: ${path}.`,
+  })
 }
+
+// function output(patches: Array<Patcher>) {
+//   const bundledXml = builder.build(Patcher.bundle(patches))
+//   const xml = '<?xml version="1.0" encoding="utf-8"?>' + bundledXml
+//   console.log(xml)
+// }
