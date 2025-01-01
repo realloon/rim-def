@@ -1,27 +1,47 @@
-import { mkdir, writeFile } from 'fs/promises'
-import { dirname } from 'path'
+// Node
+import { resolve } from 'path'
+// Class
 import Definer from '../define/Definer'
+import Patcher from '../patch/Patcher'
+// Helper
+import wrapArray from './wrapArray'
+import builder from './builder'
+import write from './write'
 import info from './info'
 
+export default function output(defs: Array<Definer>, root?: string): void
+export default function output(
+  patches: Array<Patcher>,
+  root?: string
+): void
 export default async function output(
-  defs: Array<Definer>,
-  fileName: string = 'bundle'
+  items: Array<Definer> | Array<Patcher>,
+  root: string = './output'
 ) {
-  const path = (fileName = `./output/${fileName}.xml`)
-  const defsXml = defs.map(def => Definer.asXml(def)).join('')
-  const result = `<?xml version="1.0" encoding="utf-8" ?><Defs>${defsXml}</Defs>`
+  const declaration = '<?xml version="1.0" encoding="utf-8"?>'
+  let fileName: string
+  let xml: string
 
-  await mkdir(dirname(path), { recursive: true })
-  await writeFile(path, result)
+  if (isDefs(items)) {
+    fileName = 'defs.xml'
+    const bundled = items.map(definer => Definer.bundle(definer))
+    const xmlObj = { Defs: wrapArray(bundled) }
+    xml = declaration + builder.build(xmlObj)
+  } else {
+    fileName = 'patches.xml'
+    const bundled = items.flatMap(patch => <unknown>Patcher.bundle(patch))
+    const xmlObj = { Patch: { Operation: wrapArray(bundled) } }
+    xml = declaration + builder.build(xmlObj)
+  }
 
+  const path = resolve(root, fileName)
+  await write(path, xml)
   info({
     state: 'Success',
-    message: `The packaged results have been output to: ${path}.`,
+    message: `has been written to ${path}`,
   })
 }
 
-// function output(patches: Array<Patcher>) {
-//   const bundledXml = builder.build(Patcher.bundle(patches))
-//   const xml = '<?xml version="1.0" encoding="utf-8"?>' + bundledXml
-//   console.log(xml)
-// }
+function isDefs(items: Array<Definer | Patcher>): items is Array<Definer> {
+  return items[0] instanceof Definer
+}
