@@ -1,5 +1,8 @@
-import type { Operation, OperationOption } from '../types/patch'
-import { wrapArraysForXml } from '../helper'
+import type {
+  Operation,
+  OperationOption,
+  OperationSequence,
+} from '../types/patch'
 
 export default class Patcher {
   private matches?: Array<string>
@@ -9,21 +12,20 @@ export default class Patcher {
     this.matches = matches
   }
 
-  static bundle(patchers: Array<Patcher>) {
-    const operations = patchers.flatMap(({ matches, operations }: any) => {
-      if (!matches) return operations
+  static bundle({
+    matches,
+    operations,
+  }: Patcher): Array<Operation> | OperationSequence {
+    if (!matches) return operations
 
-      return {
-        '@_Class': 'PatchOperationFindMod',
-        mods: matches,
-        match: {
-          '@_Class': 'PatchOperationSequence',
-          operations,
-        },
-      }
-    })
-
-    return { Patch: { Operation: wrapArraysForXml(operations) } }
+    return {
+      '@_Class': 'PatchOperationFindMod',
+      mods: matches,
+      match: {
+        '@_Class': 'PatchOperationSequence',
+        operations,
+      },
+    }
   }
 
   add({ xpath, value }: OperationOption) {

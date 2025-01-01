@@ -1,5 +1,3 @@
-import { builder, wrapArraysForXml } from '../helper'
-
 interface Attrs {
   '@_Name': string
   '@_ParentName': string
@@ -14,17 +12,13 @@ export default abstract class Definer {
     this.defined.defName = defName
   }
 
+  static getDefName(definer: Definer) {
+    return definer.defined.defName
+  }
+
   static bundle(definer: Definer) {
-    return wrapArraysForXml({
+    return {
       [definer.type]: Object.assign(definer.attrs, definer.defined),
-    })
-  }
-
-  static asXml(definer: Definer) {
-    return builder.build(Definer.bundle(definer))
-  }
-
-  get defName() {
-    return <string>this.defined.defName
+    }
   }
 }

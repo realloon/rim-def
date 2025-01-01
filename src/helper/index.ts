@@ -1,5 +1,5 @@
 import builder from './builder'
-import wrapArraysForXml from './wrapArraysForXml'
+import wrapArray from './wrapArray'
 import output from './output'
 
-export { builder, wrapArraysForXml, output }
+export { builder, wrapArray, output }

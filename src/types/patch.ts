@@ -14,3 +14,12 @@ export interface Operation {
 }
 
 export type OperationOption = Omit<Required<Operation>, '@_Class'>
+
+export interface OperationSequence {
+  '@_Class': 'PatchOperationFindMod'
+  mods: Array<string>
+  match: {
+    '@_Class': 'PatchOperationSequence'
+    operations: Array<Operation>
+  }
+}
