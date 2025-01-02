@@ -4,7 +4,7 @@ import Definer from './Definer'
 export default class BulletDef extends Definer {
   protected type = 'ThingDef'
   protected attrs = { '@_ParentName': 'BaseBullet' }
-  protected defined: Partial<Bullet> = {}
+  protected declare defined: Partial<Bullet> 
 
   constructor(defName: string) {
     super(defName)

@@ -4,7 +4,7 @@ import Definer from './Definer'
 export default class GunDef extends Definer {
   protected type = 'ThingDef'
   protected attrs = { '@_ParentName': 'BaseHumanMakeableGun' }
-  protected defined: Partial<Gun> = {}
+  protected declare defined: Partial<Gun>
 
   constructor(defName: string) {
     super(defName)
