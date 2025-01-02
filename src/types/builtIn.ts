@@ -184,7 +184,7 @@ export type SubSounds = {
     Partial<{
       grains: [
         {
-          '@_Class': 'AudioGrain_Clip'
+          '@_Class': 'AudioGrain_Clip' | 'AudioGrain_Folder'
           clipFolderPath: string
         }
       ]
