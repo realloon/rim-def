@@ -4,7 +4,7 @@ export default function wrapArray(obj: Record<string, any>) {
       const wrapped = values.map(item =>
         isObject(values) ? wrapArray(item) : item
       )
-      obj[key] = { li: wrapped } // adapt to convert to xml
+      obj[key] = wrapped.map(item => ({ li: item })) // adapt to convert to xml
     } else if (isObject(values)) {
       wrapArray(values)
     }
