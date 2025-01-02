@@ -93,6 +93,8 @@ export type RecipeMaker = {
     }>
     /** 工作台 */
     recipeUsers: Partial<Array<'FabricationBench' | 'TableMachining'>> // '@_Inherit': 'False'
+    /** 列表优先级 */
+    displayPriority: number
   }>
 }
 
