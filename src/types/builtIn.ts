@@ -111,6 +111,16 @@ export type CostList = {
   }>
 }
 
+export type ThingSetMakerTags = {
+  thingSetMakerTags: Array<
+    | 'RewardStandardMidFreq'
+    | 'RewardStandardCore'
+    | 'RewardStandardLowFreq'
+    | 'RewardStandardQualitySuper'
+    | 'RewardStandardHighFreq'
+  >
+}
+
 export type WeaponTags = {
   weaponTags: Array<
     'Gun' | 'SpacerGun' | 'GunHeavy' | 'IndustrialGunAdvanced'

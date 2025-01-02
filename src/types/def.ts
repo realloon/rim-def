@@ -19,6 +19,7 @@ import type {
   Verbs,
   Tools,
   EquippedStatOffsets,
+  ThingSetMakerTags,
   Context,
   EventNames,
   MaxVoices,
@@ -49,7 +50,8 @@ export type Gun = DefName &
   WeaponTags &
   Verbs &
   Tools &
-  EquippedStatOffsets
+  EquippedStatOffsets &
+  ThingSetMakerTags
 
 export type Sound = DefName &
   Context &
