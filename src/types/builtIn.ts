@@ -160,6 +160,8 @@ export type EquippedStatOffsets = {
   equippedStatOffsets: Partial<{
     /** 移动速度 */
     MoveSpeed: number
+    /** 射击精度 */
+    ShootingAccuracyPawn: number
   }>
 }
 
