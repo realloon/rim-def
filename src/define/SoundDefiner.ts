@@ -4,7 +4,7 @@ import Definer from './Definer'
 export default class SoundDef extends Definer {
   protected type = 'SoundDef'
   protected attrs = {}
-  protected declare defined: Partial<Sound>
+  protected declare defined: Sound
 
   constructor(defName: string) {
     super(defName)

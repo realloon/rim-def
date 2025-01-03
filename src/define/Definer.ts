@@ -1,12 +1,21 @@
+import type { I18n } from '../types/i18n'
+
 interface Attrs {
   '@_Name': string
   '@_ParentName': string
+}
+
+interface translated {
+  defname: string
+  field: string
+  i18n: I18n
 }
 
 export default abstract class Definer {
   protected abstract type: string
   protected abstract attrs: Partial<Attrs>
   protected defined: Record<string, unknown> = {}
+  protected translated = new Set<translated>()
 
   constructor(defName: string) {
     this.defined.defName = defName

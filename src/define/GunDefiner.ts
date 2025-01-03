@@ -5,7 +5,7 @@ import Definer from './Definer'
 export default class GunDef extends Definer {
   protected type = 'ThingDef'
   protected attrs = { '@_ParentName': 'BaseHumanMakeableGun' }
-  protected declare defined: Partial<Gun>
+  protected declare defined: Gun
 
   constructor(defName: string) {
     super(defName)
@@ -14,16 +14,32 @@ export default class GunDef extends Definer {
   label(value: Gun['label']): this
   label(value: I18n): this
   label(value: Gun['label'] | I18n) {
-    this.defined.description =
-      typeof value === 'string' ? value : value.default
+    if (typeof value === 'string') {
+      this.defined.label = value
+    } else {
+      this.defined.label = value.default
+      this.translated.add({
+        defname: this.defined.defName,
+        field: 'label',
+        i18n: value,
+      })
+    }
     return this
   }
 
   description(value: Gun['description']): this
   description(value: I18n): this
   description(value: Gun['description'] | I18n) {
-    this.defined.description =
-      typeof value === 'string' ? value : value.default
+    if (typeof value === 'string') {
+      this.defined.description = value
+    } else {
+      this.defined.description = value.default
+      this.translated.add({
+        defname: this.defined.defName,
+        field: 'description',
+        i18n: value,
+      })
+    }
     return this
   }
 

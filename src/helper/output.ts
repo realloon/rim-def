@@ -10,14 +10,11 @@ import builder from './builder'
 import write from './write'
 import info from './info'
 
-export default function output(defs: Array<Definer>, root?: string): void
-export default function output(
-  patches: Array<Patcher>,
-  root?: string
-): void
+export default function output(defs: Definer[], root?: string): void
+export default function output(patches: Patcher[], root?: string): void
 export default function output(about: Abouter, root?: string): void
 export default async function output(
-  parm: Array<Definer> | Array<Patcher> | Abouter,
+  parm: Definer[] | Patcher[] | Abouter,
   root: string = './output'
 ) {
   const declaration = '<?xml version="1.0" encoding="utf-8"?>'
@@ -26,12 +23,12 @@ export default async function output(
 
   if (Array.isArray(parm)) {
     if (isDefs(parm)) {
-      fileName = 'defs.xml'
+      fileName = 'Defs/defs.xml'
       xmlObj = {
         Defs: wrapArray(parm.map(definer => Definer.bundle(definer))),
       }
     } else {
-      fileName = 'patches.xml'
+      fileName = 'Patches/patches.xml'
       xmlObj = {
         Patch: {
           Operation: wrapArray(
@@ -41,7 +38,7 @@ export default async function output(
       }
     }
   } else {
-    fileName = 'About.xml'
+    fileName = 'About/About.xml'
     xmlObj = { ModMetaData: wrapArray(Abouter.bundle(parm)) }
   }
 
