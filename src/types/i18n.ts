@@ -5,3 +5,5 @@ export interface Translate {
     hant: string
   }>
 }
+
+export type I18n = Translate[string] & { default: string }

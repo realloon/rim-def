@@ -48,7 +48,6 @@ export default async function output(
   const xml = declaration + builder.build(xmlObj)
   const path = resolve(root, fileName)
   await write(path, xml)
-  
   info({
     state: 'Success',
     message: `has been written to ${path}`,

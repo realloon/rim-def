@@ -1,4 +1,5 @@
 import type { Gun } from '../types/def'
+import type { I18n } from '../types/i18n'
 import Definer from './Definer'
 
 export default class GunDef extends Definer {
@@ -10,13 +11,19 @@ export default class GunDef extends Definer {
     super(defName)
   }
 
-  label(value: Gun['label']) {
-    this.defined.label = value
+  label(value: Gun['label']): this
+  label(value: I18n): this
+  label(value: Gun['label'] | I18n) {
+    this.defined.description =
+      typeof value === 'string' ? value : value.default
     return this
   }
 
-  description(value: Gun['description']) {
-    this.defined.description = value
+  description(value: Gun['description']): this
+  description(value: I18n): this
+  description(value: Gun['description'] | I18n) {
+    this.defined.description =
+      typeof value === 'string' ? value : value.default
     return this
   }
 
