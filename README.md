@@ -4,6 +4,12 @@ Rim-def 为开发 **RimWorld Mod** 所设计，编程式地声明 `Defs`、`Patc
 
 为何需要编程式声明，而不是手写 xml？因为我们需要成员提示、代码补全和类型检查，依托于现代编辑器的智能感知，rim-def 实现了这一切。
 
+![成员提示](https://pic1.imgdb.cn/item/677805afd0e0a243d4eec207.webp)
+
+![代码补全](https://pic1.imgdb.cn/item/677805cbd0e0a243d4eec20c.webp)
+
+![类型检查](https://pic1.imgdb.cn/item/677805ddd0e0a243d4eec20f.webp)
+
 Rim-def 旨在提升开发者的人体工程学体验和幸福指数。
 
 ## 如何使用
