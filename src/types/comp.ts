@@ -10,6 +10,8 @@ export interface ApparelReloadable {
   displayGizmoWhileUndrafted: boolean
 }
 
+
+
 export interface Burnable {
   '@_Class': 'CompProperties_AbilityBurner'
   numStreams: number

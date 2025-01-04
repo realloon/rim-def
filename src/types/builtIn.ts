@@ -1,3 +1,5 @@
+import { VerbShoot } from './verb'
+
 type Material =
   | 'Steel'
   | 'Plasteel'
@@ -136,24 +138,6 @@ export type WeaponTags = {
     | 'SpacerGun'
     | 'GunHeavy'
     | 'AssaultRifle'
-  >
-}
-
-export type Verbs = {
-  verbs: Array<
-    Partial<{
-      verbClass: 'Verb_Shoot'
-      hasStandardCommand: boolean
-      defaultProjectile: string
-      warmupTime: number
-      minRange: number
-      range: number
-      ticksBetweenBurstShots: number
-      burstShotCount: number
-      soundCast: string
-      soundCastTail: 'GunTail_Light' | 'GunTail_Medium'
-      muzzleFlashScale: number
-    }>
   >
 }
 

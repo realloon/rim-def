@@ -16,7 +16,6 @@ import type {
   RecipeMaker,
   CostList,
   WeaponTags,
-  Verbs,
   Tools,
   EquippedStatOffsets,
   ThingSetMakerTags,
@@ -28,6 +27,7 @@ import type {
   IconPath,
 } from './builtIn'
 import { Burnable, Firespewable } from './comp'
+import { VerbShoot } from './verb'
 
 export type Bullet = DefName &
   Label &
@@ -50,10 +50,11 @@ export type Gun = DefName &
   RecipeMaker &
   CostList &
   WeaponTags &
-  Verbs &
   Tools &
-  EquippedStatOffsets &
-  ThingSetMakerTags & { comps: Array<any> } // TODO:
+  EquippedStatOffsets & // TODO:
+  ThingSetMakerTags & { comps: Array<any> } & {
+    verbs: Array<VerbShoot>
+  }
 
 export type Sound = DefName &
   Context &
@@ -86,4 +87,6 @@ export type Ability = DefName &
     }
   } & {
     comps: Array<Burnable | Firespewable>
+  } & {
+    verbs: Array<any>
   }
