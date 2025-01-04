@@ -73,7 +73,7 @@ export type Ability = DefName &
     showOnCharacterCard: false
     cooldownTicksRange: string
     verbProperties: {
-      verbClass: 'Verb_CastAbility'
+      verbClass: 'Verb_CastAbility' | 'Verb_AbilityShoot'
       requireLineOfSight: boolean
       range: number
       warmupTime: number
