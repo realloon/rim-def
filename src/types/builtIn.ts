@@ -97,7 +97,10 @@ export type RecipeMaker = {
       /** 手工 */
       Crafting: number
     }>
-    /** 工作台 */
+    /**
+     * 工作台
+     * @default ['TableMachining']
+     */
     recipeUsers: Partial<Array<'FabricationBench' | 'TableMachining'>> // '@_Inherit': 'False'
     /** 列表优先级 */
     displayPriority: number
