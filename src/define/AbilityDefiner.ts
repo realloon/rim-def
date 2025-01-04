@@ -19,26 +19,37 @@ export default class AbilityDefiner extends Definer {
     this.defined.description = value
     return this
   }
+  
   iconPath(value: Ability['iconPath']) {
     this.defined.iconPath = value
     return this
   }
+
   aiCanUse(value: Ability['aiCanUse']) {
     this.defined.aiCanUse = value
     return this
   }
+
   ai_IsIncendiary(value: Ability['ai_IsIncendiary']) {
     this.defined.ai_IsIncendiary = value
     return this
   }
+
   warmupStartSound(value: Ability['warmupStartSound']) {
     this.defined.warmupStartSound = value
     return this
   }
+
   showOnCharacterCard(value: Ability['showOnCharacterCard']) {
     this.defined.showOnCharacterCard = value
     return this
   }
+
+  cooldownTicksRange(value: Ability['cooldownTicksRange']) {
+    this.defined.cooldownTicksRange = value
+    return this
+  }
+
   verbProperties(value: Ability['verbProperties']) {
     this.defined.verbProperties = value
     return this

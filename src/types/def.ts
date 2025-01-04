@@ -70,6 +70,7 @@ export type Ability = DefName &
     ai_IsIncendiary: true
     warmupStartSound: 'FireSpew_Warmup'
     showOnCharacterCard: false
+    cooldownTicksRange: string
     verbProperties: {
       verbClass: 'Verb_CastAbility'
       requireLineOfSight: boolean
