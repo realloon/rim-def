@@ -24,4 +24,9 @@ export default class BulletDef extends Definer {
     this.defined.projectile = value
     return this
   }
+
+  thingClass(value: Bullet['thingClass']) {
+    this.defined.thingClass = value
+    return this
+  }
 }

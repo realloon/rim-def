@@ -29,7 +29,7 @@ export type AltitudeLayer = {
 }
 
 export type ThingClass = {
-  thingClass: 'Bullet'
+  thingClass: 'Bullet' | 'Projectile_SpawnsThing'
 }
 
 export type Label = {
