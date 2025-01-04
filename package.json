@@ -1,6 +1,6 @@
 {
   "name": "rim-def",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Programmatically declaring Defs, Patches, and About.",
   "main": "./src/index.ts",
   "keywords": [
