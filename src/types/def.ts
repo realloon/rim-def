@@ -25,8 +25,8 @@ import type {
   MaxVoices,
   MaxSimultaneous,
   SubSounds,
-  Comps,
 } from './builtIn'
+import { ApparelReloadable } from './comp'
 
 export type Bullet = DefName &
   Label &
@@ -52,8 +52,7 @@ export type Gun = DefName &
   Verbs &
   Tools &
   EquippedStatOffsets &
-  ThingSetMakerTags &
-  Comps
+  ThingSetMakerTags & { comps: Array<any> } // TODO:
 
 export type Sound = DefName &
   Context &
@@ -61,3 +60,8 @@ export type Sound = DefName &
   MaxVoices &
   MaxSimultaneous &
   SubSounds
+
+// TODO: Apparel
+// {
+//   comps: Array<ApparelReloadable>
+// }
