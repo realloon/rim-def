@@ -132,7 +132,11 @@ export type ThingSetMakerTags = {
 
 export type WeaponTags = {
   weaponTags: Array<
-    'Gun' | 'SpacerGun' | 'GunHeavy' | 'IndustrialGunAdvanced'
+    | 'Gun'
+    | 'IndustrialGunAdvanced'
+    | 'SpacerGun'
+    | 'GunHeavy'
+    | 'AssaultRifle'
   >
 }
 
