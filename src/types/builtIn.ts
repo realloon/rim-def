@@ -1,3 +1,11 @@
+type Material =
+  | 'Steel'
+  | 'Plasteel'
+  | 'ComponentIndustrial'
+  | 'ComponentSpacer'
+
+// === //
+
 export type DefName = {
   defName: string
 }
@@ -108,16 +116,7 @@ export type RecipeMaker = {
 }
 
 export type CostList = {
-  costList: Partial<{
-    /** 钢铁 */
-    Steel: number
-    /** 玻璃钢 */
-    Plasteel: number
-    /** 零部件 */
-    ComponentIndustrial: number
-    /** 高级零部件 */
-    ComponentSpacer: number
-  }>
+  costList: Partial<Record<Material, number>>
 }
 
 export type ThingSetMakerTags = {
@@ -215,7 +214,6 @@ export type SubSounds = {
     }>
   >
 }
-
 
 export type IconPath = {
   iconPath: string
