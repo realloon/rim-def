@@ -25,6 +25,7 @@ import type {
   MaxVoices,
   MaxSimultaneous,
   SubSounds,
+  Comps,
 } from './builtIn'
 
 export type Bullet = DefName &
@@ -51,7 +52,8 @@ export type Gun = DefName &
   Verbs &
   Tools &
   EquippedStatOffsets &
-  ThingSetMakerTags
+  ThingSetMakerTags &
+  Comps
 
 export type Sound = DefName &
   Context &

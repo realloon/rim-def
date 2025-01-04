@@ -95,4 +95,8 @@ export default class GunDef extends Definer {
     this.defined.equippedStatOffsets = value
     return this
   }
+
+  comps(values: Gun['comps']) {
+    this.defined.comps = values
+  }
 }
