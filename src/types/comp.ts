@@ -24,6 +24,7 @@ export interface Burnable {
 }
 
 export interface Firespewable {
+  '@_Class': 'CompProperties_AbilityFireSpew'
   range: number
   lineWidthEnd: number
   filthDef: 'Filth_Ash'
