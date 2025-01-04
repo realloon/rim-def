@@ -48,6 +48,7 @@ export type GraphicData = {
   graphicData: Partial<{
     texPath: string
     graphicClass: 'Graphic_Single'
+    shaderType: 'TransparentPostLight'
     drawSize: number
   }>
 }
