@@ -25,8 +25,9 @@ import type {
   MaxVoices,
   MaxSimultaneous,
   SubSounds,
+  IconPath,
 } from './builtIn'
-import { ApparelReloadable } from './comp'
+import { Burnable, Firespewable } from './comp'
 
 export type Bullet = DefName &
   Label &
@@ -61,7 +62,27 @@ export type Sound = DefName &
   MaxSimultaneous &
   SubSounds
 
-// TODO: Apparel
-// {
-//   comps: Array<ApparelReloadable>
-// }
+export type Ability = DefName &
+  Label &
+  Description &
+  IconPath & {
+    aiCanUse: boolean
+    ai_IsIncendiary: true
+    warmupStartSound: 'FireSpew_Warmup'
+    showOnCharacterCard: false
+    verbProperties: {
+      verbClass: 'Verb_CastAbility'
+      requireLineOfSight: boolean
+      range: number
+      warmupTime: number
+      soundCast: 'FireSpew_Resolve'
+      targetParams: {
+        canTargetLocations: boolean
+      }
+      flammabilityAttachFireChanceCurve: {
+        points: Array<string>
+      }
+    }
+  } & {
+    comps: Array<Burnable | Firespewable>
+  }

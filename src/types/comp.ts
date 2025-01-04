@@ -9,3 +9,24 @@ export interface ApparelReloadable {
   chargeNoun: 'incendiary'
   displayGizmoWhileUndrafted: boolean
 }
+
+export interface Burnable {
+  '@_Class': 'CompProperties_AbilityBurner'
+  numStreams: number
+  range: number
+  coneSizeDegrees: number
+  moteDef: 'Mote_IncineratorBurst'
+  barrelOffsetDistance: number
+  sizeReductionDistanceThreshold: number
+  lifespanNoise: number
+  rangeNoise: number
+  effecterDef: 'BurnerUsed'
+}
+
+export interface Firespewable {
+  range: number
+  lineWidthEnd: number
+  filthDef: 'Filth_Ash'
+  damAmount: number
+  canHitFilledCells: boolean
+}

@@ -215,3 +215,8 @@ export type SubSounds = {
     }>
   >
 }
+
+
+export type IconPath = {
+  iconPath: string
+}
