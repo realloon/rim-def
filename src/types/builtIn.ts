@@ -57,7 +57,13 @@ export type Projectile = {
 }
 
 export type TechLevel = {
-  techLevel: 'Spacer'
+  techLevel:
+    | 'Neolithic'
+    | 'Medieval'
+    | 'Industrial'
+    | 'Spacer'
+    | 'Ultra'
+    | 'Archotech'
 }
 
 export type SoundInteract = {
