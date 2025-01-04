@@ -79,7 +79,9 @@ export type Ability = DefName &
       warmupTime: number
       soundCast: 'FireSpew_Resolve'
       targetParams: {
-        canTargetLocations: boolean
+        canTargetPawns: boolean,
+        canTargetBuildings: boolean,
+        canTargetLocations: boolean,
       }
       flammabilityAttachFireChanceCurve: {
         points: Array<string>
