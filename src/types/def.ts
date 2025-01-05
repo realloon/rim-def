@@ -70,7 +70,7 @@ export type Ability = DefName &
     aiCanUse: boolean
     ai_IsIncendiary: true
     warmupStartSound: 'FireSpew_Warmup'
-    showOnCharacterCard: false
+    showOnCharacterCard: boolean
     cooldownTicksRange: string
     verbProperties: {
       verbClass: 'Verb_CastAbility' | 'Verb_AbilityShoot'
