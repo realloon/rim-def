@@ -14,7 +14,7 @@ export interface VerbShoot {
 
 export interface VerbAbilityShoot {
   verbClass: 'Verb_AbilityShoot'
-  defaultProjectile: number,
+  defaultProjectile: string,
   range: number
   soundCast: 'FireSpew_Resolve'
   muzzleFlashScale: number
