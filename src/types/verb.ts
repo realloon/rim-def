@@ -3,8 +3,8 @@ export interface VerbShoot {
   defaultProjectile: string
   hasStandardCommand: boolean
   warmupTime: number
-  minRange: number
   range: number
+  minRange?: number
   ticksBetweenBurstShots: number
   burstShotCount: number
   soundCast: string
