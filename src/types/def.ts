@@ -52,7 +52,9 @@ export type Gun = DefName &
   WeaponTags &
   Tools &
   EquippedStatOffsets & // TODO:
-  ThingSetMakerTags & { comps: Array<any> } & {
+  ThingSetMakerTags & {
+    comps: { '@_Inherit': 'True' | 'False'; li: Array<any> }
+  } & {
     verbs: Array<VerbShoot>
   }
 

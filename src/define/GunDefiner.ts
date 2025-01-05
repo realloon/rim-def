@@ -96,7 +96,10 @@ export default class GunDef extends Definer {
     return this
   }
 
-  comps(values: Gun['comps']) {
-    this.defined.comps = values
+  comps(values: Gun['comps']['li'], inherit: 'True' | 'False' = 'True') {
+    this.defined.comps = {
+      '@_Inherit': inherit,
+      li: values,
+    }
   }
 }
