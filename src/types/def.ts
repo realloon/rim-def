@@ -27,7 +27,7 @@ import type {
   IconPath,
 } from './builtIn'
 import { Burnable, Firespewable } from './comp'
-import { VerbShoot } from './verb'
+import { VerbAbilityShoot, VerbShoot } from './verb'
 
 export type Bullet = DefName &
   Label &
@@ -72,21 +72,8 @@ export type Ability = DefName &
     warmupStartSound: 'FireSpew_Warmup'
     showOnCharacterCard: boolean
     cooldownTicksRange: string
-    verbProperties: {
-      verbClass: 'Verb_CastAbility' | 'Verb_AbilityShoot'
-      requireLineOfSight: boolean
-      range: number
-      warmupTime: number
-      soundCast: 'FireSpew_Resolve'
-      targetParams: {
-        canTargetPawns: boolean,
-        canTargetBuildings: boolean,
-        canTargetLocations: boolean,
-      }
-      flammabilityAttachFireChanceCurve: {
-        points: Array<string>
-      }
-    }
+  } & {
+    verbProperties: VerbAbilityShoot
   } & {
     comps: Array<Burnable | Firespewable>
   } & {
