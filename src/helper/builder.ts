@@ -4,7 +4,7 @@ const builder = new XMLBuilder({
   ignoreAttributes: false,
   processEntities: false,
   oneListGroup: false,
-  format: true,
+  format: false,
 })
 
 export default builder

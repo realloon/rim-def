@@ -19,30 +19,32 @@ export default async function output(
 ) {
   const declaration = '<?xml version="1.0" encoding="utf-8"?>'
   let fileName: string
-  let xmlObj: Record<string, unknown>
+  let tag: string
+  let content: string
 
   if (Array.isArray(parm)) {
     if (isDefs(parm)) {
       fileName = 'Defs/defs.xml'
-      xmlObj = {
-        Defs: wrapArray(parm.map(definer => Definer.bundle(definer))),
-      }
+      tag = 'Defs'
+      content = parm
+        .map(definer => builder.build(wrapArray(Definer.bundle(definer))))
+        .join('\n')
     } else {
       fileName = 'Patches/patches.xml'
-      xmlObj = {
-        Patch: {
-          Operation: wrapArray(
-            parm.flatMap(patch => <unknown>Patcher.bundle(patch))
-          ),
-        },
-      }
+      tag = 'Patch'
+      content = builder.build({
+        Operation: wrapArray(
+          parm.flatMap(patch => <unknown>Patcher.bundle(patch))
+        ),
+      })
     }
   } else {
     fileName = 'About/About.xml'
-    xmlObj = { ModMetaData: wrapArray(Abouter.bundle(parm)) }
+    tag = 'ModMetaData'
+    content = builder.build(wrapArray(Abouter.bundle(parm)))
   }
 
-  const xml = declaration + builder.build(xmlObj)
+  const xml = `${declaration}<${tag}>${content}</${tag}>`
   const path = resolve(root, fileName)
   await write(path, xml)
   info({
