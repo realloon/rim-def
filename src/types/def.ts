@@ -25,6 +25,7 @@ import type {
   MaxSimultaneous,
   SubSounds,
   IconPath,
+  UiIconScale,
 } from './builtIn'
 import { Burnable, Firespewable } from './comp'
 import { VerbAbilityShoot, VerbShoot } from './verb'
@@ -45,6 +46,7 @@ export type Gun = DefName &
   Description &
   TechLevel &
   GraphicData &
+  UiIconScale &
   SoundInteract &
   StatBases &
   RecipeMaker &

@@ -53,6 +53,10 @@ export default class GunDef extends Definer {
     return this
   }
 
+  uiIconScale(value: Gun['uiIconScale']) {
+    this.defined.uiIconScale = value
+  }
+
   soundInteract(value: Gun['soundInteract']) {
     this.defined.soundInteract = value
     return this

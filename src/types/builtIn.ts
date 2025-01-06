@@ -53,6 +53,10 @@ export type GraphicData = {
   }>
 }
 
+export type UiIconScale = {
+  uiIconScale: number
+}
+
 export type Projectile = {
   projectile: Partial<{
     damageDef: 'Bullet'
