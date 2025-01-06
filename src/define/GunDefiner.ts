@@ -18,8 +18,8 @@ export default class GunDef extends Definer {
       this.defined.label = value
     } else {
       this.defined.label = value.default
-      this.translated.add({
-        defname: this.defined.defName,
+      Definer.translated.add({
+        defName: this.defined.defName,
         field: 'label',
         i18n: value,
       })
@@ -34,8 +34,8 @@ export default class GunDef extends Definer {
       this.defined.description = value
     } else {
       this.defined.description = value.default
-      this.translated.add({
-        defname: this.defined.defName,
+      Definer.translated.add({
+        defName: this.defined.defName,
         field: 'description',
         i18n: value,
       })
