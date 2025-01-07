@@ -13,7 +13,7 @@ interface translated {
 
 export default abstract class Definer {
   protected abstract type: string
-  protected abstract attrs: Partial<Attrs>
+  protected attrs: Partial<Attrs> = {}
   protected defined: Record<string, unknown> = {}
   static translated = new Set<translated>()
 

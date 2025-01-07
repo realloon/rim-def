@@ -207,3 +207,7 @@ export type SubSounds = {
 export type IconPath = {
   iconPath: string
 }
+
+export type WorkerClass = {
+  workerClass: string
+}

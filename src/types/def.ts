@@ -26,6 +26,7 @@ import type {
   SubSounds,
   IconPath,
   UiIconScale,
+  WorkerClass,
 } from './builtIn'
 import { Burnable, Firespewable } from './comp'
 import { VerbAbilityShoot, VerbShoot } from './verb'
@@ -83,3 +84,5 @@ export type Ability = DefName &
   } & {
     verbs: Array<any>
   }
+
+export type Damage = DefName & WorkerClass
