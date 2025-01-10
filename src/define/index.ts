@@ -3,6 +3,7 @@ import BulletDefiner from './BulletDefiner'
 import SoundDefiner from './SoundDefiner'
 import AbilityDefiner from './AbilityDefiner'
 import DamageDefiner from './DamageDefiner'
+import HediffDefiner from './HediffDefiner'
 
 export function defineGun(defName: string) {
   return new GunDefiner(defName)
@@ -22,4 +23,8 @@ export function defineAbility(defName: string) {
 
 export function defineDamage(defName: string, extend?: string) {
   return new DamageDefiner(defName, extend)
+}
+
+export function defineHediff(defname: string) {
+  return new HediffDefiner(defname)
 }

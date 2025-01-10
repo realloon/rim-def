@@ -28,8 +28,9 @@ import type {
   UiIconScale,
   WorkerClass,
 } from './builtIn'
-import { Burnable, Firespewable } from './comp'
 import { VerbAbilityShoot, VerbShoot } from './verb'
+import { Burnable, Firespewable } from './comp'
+import { Disappears } from './hediffComp'
 
 export type Bullet = DefName &
   Label &
@@ -83,6 +84,14 @@ export type Ability = DefName &
     comps: Array<Burnable | Firespewable>
   } & {
     verbs: Array<any>
+  }
+
+export type Hediff = DefName &
+  Label &
+  Description & {
+    cureAllAtOnceIfCuredByItem: boolean
+    stages: Array<{ partEfficiencyOffset: number }>
+    comps: Array<Disappears>
   }
 
 export type Damage = DefName & WorkerClass

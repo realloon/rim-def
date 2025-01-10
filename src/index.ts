@@ -3,6 +3,8 @@ import {
   defineBullet,
   defineSound,
   defineAbility,
+  defineDamage,
+  defineHediff,
 } from './define'
 import definePatch from './patch'
 import defineAbout from './about'
@@ -14,6 +16,8 @@ export {
   defineBullet,
   defineSound,
   defineAbility,
+  defineDamage,
+  defineHediff,
   definePatch,
   defineAbout,
   useI18n,
