@@ -91,7 +91,7 @@ export type Hediff = DefName &
   Description & {
     cureAllAtOnceIfCuredByItem: boolean
     stages: Array<{ partEfficiencyOffset: number }>
-    comps: Array<Disappears>
+    comps: Array<Partial<Disappears>>
   }
 
 export type Damage = DefName & WorkerClass
