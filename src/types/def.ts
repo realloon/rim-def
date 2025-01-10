@@ -89,6 +89,7 @@ export type Ability = DefName &
 export type Hediff = DefName &
   Label &
   Description & {
+    hediffClass: 'HediffWithComps'
     cureAllAtOnceIfCuredByItem: boolean
     stages: Array<{ partEfficiencyOffset: number }>
     comps: Array<Partial<Disappears>>

@@ -20,6 +20,11 @@ export default class HediffDefiner extends Definer {
     return this
   }
 
+  hediffClass(value: Hediff['hediffClass']) {
+    this.defined.hediffClass = value
+    return this
+  }
+
   cureAllAtOnceIfCuredByItem(value: Hediff['cureAllAtOnceIfCuredByItem']) {
     this.defined.cureAllAtOnceIfCuredByItem = value
     return this
@@ -30,8 +35,8 @@ export default class HediffDefiner extends Definer {
     return this
   }
 
-  comps(vales: Hediff['comps']) {
-    this.defined.comps = vales
+  comps(values: Hediff['comps']) {
+    this.defined.comps = values
     return this
   }
 }
