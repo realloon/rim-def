@@ -10,22 +10,22 @@ export default class HediffDefiner extends Definer {
     super(defName)
   }
 
-  context(value: Hediff['label']) {
+  label(value: Hediff['label']) {
     this.defined.label = value
     return this
   }
 
-  eventNames(value: Hediff['description']) {
+  description(value: Hediff['description']) {
     this.defined.description = value
     return this
   }
 
-  maxVoices(value: Hediff['cureAllAtOnceIfCuredByItem']) {
+  cureAllAtOnceIfCuredByItem(value: Hediff['cureAllAtOnceIfCuredByItem']) {
     this.defined.cureAllAtOnceIfCuredByItem = value
     return this
   }
 
-  maxSimultaneous(values: Hediff['stages']) {
+  stages(values: Hediff['stages']) {
     this.defined.stages = values
     return this
   }
