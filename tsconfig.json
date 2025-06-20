@@ -8,8 +8,8 @@
     "strict": true,
     "skipLibCheck": true,
     "paths": {
-      "#types": ["./types/index.ts"],
-      "#defined": ["./modules/Defined/index.ts"]
+      // "#types": ["./types/index.ts"],
+      // "#defined": ["./modules/Defined/index.ts"]
     }
   }
 }
