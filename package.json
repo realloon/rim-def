@@ -2,7 +2,7 @@
   "name": "rim-def",
   "version": "0.6.6",
   "description": "Programmatically declaring Defs, Patches, and About.",
-  "main": "./src/index.ts",
+  "main": "./main.ts",
   "keywords": [
     "rim-def",
     "rimworld"
