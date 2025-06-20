@@ -1,0 +1,178 @@
+<Defs>
+  <ThingDef Name="BaseWeapon" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <drawerType>MapMeshOnly</drawerType>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>true</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <equipmentType>Primary</equipmentType>
+    <useHitPoints>true</useHitPoints>
+    <pathCost>14</pathCost>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>2</DeteriorationRate>
+      <Beauty>-3</Beauty>
+      <SellPriceFactor>0.20</SellPriceFactor>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li Class="CompProperties_Styleable" />
+    </comps>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <allowedArchonexusCount>1</allowedArchonexusCount>
+  </ThingDef>
+
+  <ThingDef Name="BaseGun" ParentName="BaseWeapon" Abstract="True">
+    <techLevel>Industrial</techLevel>
+    <smeltable>true</smeltable>
+    <relicChance>1</relicChance>
+    <thingCategories>
+      <li>WeaponsRanged</li>
+    </thingCategories>
+    <weaponClasses>
+      <li>Ranged</li>
+    </weaponClasses>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Art">
+        <nameMaker>NamerArtWeaponGun</nameMaker>
+        <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Name="BaseGunWithQuality" ParentName="BaseGun" Abstract="True">
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Name="BaseMakeableGun" ParentName="BaseGunWithQuality" Abstract="True">
+    <recipeMaker>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+      <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    </recipeMaker>
+  </ThingDef>
+
+  <ThingDef Name="BaseHumanMakeableGun" ParentName="BaseMakeableGun" Abstract="True">
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <tradeTags>
+      <li>WeaponRanged</li>
+    </tradeTags>
+    <comps>
+      <li Class="CompProperties_Biocodable" />
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>Gun_AssaultRifle</defName>
+    <label>assault rifle</label>
+    <description>A general-purpose gas-operated assault rifle for field or urban combat. It has good
+      range, decent power, and good accuracy.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/AssaultRifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <recipeMaker>
+      <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+      <displayPriority>420</displayPriority>
+    </recipeMaker>
+    <thingSetMakerTags>
+      <li>RewardStandardQualitySuper</li>
+    </thingSetMakerTags>
+    <statBases>
+      <WorkToMake>40000</WorkToMake>
+      <Mass>3.5</Mass>
+      <AccuracyTouch>0.60</AccuracyTouch>
+      <AccuracyShort>0.70</AccuracyShort>
+      <AccuracyMedium>0.65</AccuracyMedium>
+      <AccuracyLong>0.55</AccuracyLong>
+      <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>7</ComponentIndustrial>
+    </costList>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_AssaultRifle</defaultProjectile>
+        <warmupTime>1.0</warmupTime>
+        <range>30.9</range>
+        <burstShotCount>3</burstShotCount>
+        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <soundCast>Shot_AssaultRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+      <li>AssaultRifle</li>
+    </weaponTags>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+
+  <!-- <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_AssaultRifle</defName>
+    <label>assault rifle bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>11</damageAmountBase>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef> -->
+</Defs>
