@@ -1,4 +1,10 @@
-interface Editable {}
+import { StatModifier } from './StatModifier'
+
+interface Editable {
+  _Name: string
+  _ParentName: string
+  _Abstract: 'True' | 'False'
+}
 
 interface Def extends Editable {
   /**
@@ -75,7 +81,7 @@ interface Def extends Editable {
 }
 
 interface BuildableDef extends Def {
-  statBases: Array<StatModifier>
+  statBases: Partial<StatModifier>
 
   passability: Traversability
 
@@ -227,7 +233,7 @@ interface BuildableDef extends Def {
   tmpHyperlinks: Array<Dialog_InfoCard['Hyperlink']>
 }
 
-interface ThingDef extends BuildableDef {
+export interface ThingDef extends BuildableDef {
   thingClass: System['Type']
 
   category: ThingCategory
@@ -263,7 +269,7 @@ interface ThingDef extends BuildableDef {
   /**
    * @default []
    */
-  comps: Array<CompProperties>
+  comps: Array<Partial<CompProperties>>
 
   /**
    * @default []
@@ -667,7 +673,7 @@ interface ThingDef extends BuildableDef {
 
   destroyOnDrop: boolean
 
-  equippedStatOffsets: Array<StatModifier>
+  equippedStatOffsets: StatModifier
 
   meleeHitSound: SoundDef
 
@@ -767,7 +773,7 @@ interface FilthProperties {}
 interface DefHyperlink {}
 interface DefModExtension {}
 interface ModContentPack {}
-interface StatModifier {}
+
 interface Traversability {}
 interface ThingDefCountClass {}
 interface StuffCategoryDef {}
@@ -790,7 +796,7 @@ interface StuffAppearanceDef {}
 interface TickerType {}
 interface IntVec2 {}
 interface IntVec3 {}
-interface CompProperties {}
+interface CompProperties {} // TODO: Gen
 interface ThingDefCountRangeClass {}
 interface DamageMultiplier {}
 interface RecipeMakerProperties {}
@@ -840,15 +846,11 @@ enum Color {
   white = 'white',
 }
 
-enum DrawerType {
-  RealtimeOnly = 'RealtimeOnly',
-}
+// as Enum
+type Tradeability = 'All'
 
-enum Tradeability {
-  All = 'All',
-}
+type DrawerType = 'RealtimeOnly' | 'MapMeshOnly'
 
-// as enum
 type TechLevel =
   | 'Undefined'
   | 'Animal'
