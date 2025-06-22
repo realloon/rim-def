@@ -1,857 +1,152 @@
-import { StatModifier } from './StatModifier'
+export { ThingDef } from './ThingDef'
 
-interface Editable {
-  _Name: string
-  _ParentName: string
-  _Abstract: 'True' | 'False'
-}
+export type CustomName = `${string}_${string}`
 
-interface Def extends Editable {
-  /**
-   * The name of this Def. It is used as an identifier by the game code.
-   * @default 'UnnamedDef'
-   * */
-  defName: string
+export type ThingDefName = 'Steel' | 'ComponentIndustrial' | CustomName
 
-  /**
-   * A human-readable label used to identify this in game.
-   * @default null
-   * @todo MustTranslate
-   */
-  label: string
+export type FleckDefName = CustomName
 
-  /**
-   * A human-readable description given when the Def is inspected by players.
-   * @default null
-   * @todo MustTranslate
-   */
-  description: string
+export type EffecterDefName = 'Smith' | CustomName
 
-  /**
-   * [XmlInheritanceAllowDuplicateNodes]
-   */
-  descriptionHyperlinks: Array<DefHyperlink>
+export type BodyPartGroupDefName = CustomName
 
-  /**
-   * Disables config error checking. Intended for mod use. (Be careful!)
-   * @default false
-   * @todo MustTranslate?
-   */
-  ignoreConfigErrors: boolean
+export type DamageDefName = CustomName
 
-  ignoreIllegalLabelCharacterConfigError: boolean
+export type TaleDefName = CustomName
 
-  /**
-   * Mod-specific data. Not used by core game code.
-   * @default null
-   */
-  modExtensions: Array<DefModExtension>
+export type RulePackDefName = CustomName
 
-  shortHash: ushort
+export type MechWorkModeDefName = CustomName
 
-  /**
-   * @default ushort.MaxValue
-   */
-  index: ushort
+export type BodyPartTagDefName = CustomName
 
-  modContentPack: ModContentPack
+export type HediffDefName = CustomName
 
-  fileName: string
+export type ProjectileDefName =
+  | 'Bullet_AssaultRifle'
+  | `${string}_Bullet_${string}`
 
-  /**
-   * @default (TaggedString) (string) null
-   */
-  cachedLabelCap: TaggedString
-
-  generated: boolean
-
-  /**
-   * @default (ushort) Rand.RangeInclusive(0, (int) ushort.MaxValue)
-   */
-  debugRandomId: ushort
-
-  /**
-   * @default UnnamedDef
-   */
-  DefaultDefName: string
-
-  AllowedDefNamesRegex: Regex // private static readonly Regex AllowedDefNamesRegex = new Regex("^[a-zA-Z0-9\\-_]*$");
-
-  DisallowedLabelCharsRegex: Regex // private static readonly Regex DisallowedLabelCharsRegex = new Regex("\\[|\\]|\\{|\\}");
-}
-
-interface BuildableDef extends Def {
-  statBases: Partial<StatModifier>
-
-  passability: Traversability
-
-  pathCost: int
-
-  /**
-   * @default true
-   */
-  pathCostIgnoreRepeat: boolean
-
-  /**
-   * @default -1f
-   */
-  fertility: float
-
-  costList: Array<ThingDefCountClass>
-
-  costStuffCount: int
-
-  stuffCategories: Array<StuffCategoryDef>
-
-  /**
-   * @todo MustTranslate
-   */
-  stuffCategorySummary: string
-
-  costListForDifficulty: CostListForDifficulty
-
-  placingDraggableDimensions: int
-
-  /**
-   * @default true
-   */
-  clearBuildingArea: boolean
-
-  /**
-   * @default Rot4.North
-   */
-  defaultPlacingRot: Rot4
-
-  /**
-   * @default 0.5f
-   */
-  resourcesFractionWhenDeconstructed: float
-
-  blocksAltitudes: Array<AltitudeLayer>
-
-  dominantStyleCategory: StyleCategoryDef
-
-  isAltar: boolean
-
-  useStuffTerrainAffordance: boolean
-
-  terrainAffordanceNeeded: TerrainAffordanceDef
-
-  buildingPrerequisites: Array<ThingDef>
-
-  researchPrerequisites: Array<ResearchProjectDef>
-
-  minMonolithLevel: int
-
-  constructionSkillPrerequisite: int
-
-  artisticSkillPrerequisite: int
-
-  minTechLevelToBuild: TechLevel
-
-  maxTechLevelToBuild: TechLevel
-
-  /**
-   * @default AltitudeLayer.Item as 'Item'
-   */
-  altitudeLayer: AltitudeLayer
-
-  repairEffect: EffecterDef
-
-  constructEffect: EffecterDef
-
-  colorPerStuff: Array<ColorForStuff>
-
-  /**
-   * @default true
-   */
-  canGenerateDefaultDesignator: boolean
-
-  ideoBuilding: boolean
-
-  specialDisplayRadius: float
-
-  placeWorkers: Array<System['Type']>
-
-  designationCategory: DesignationCategoryDef
-
-  designatorDropdown: DesignatorDropdownGroupDef
-
-  designationHotKey: KeyBindingDef
-
-  /**
-   * @default 2999f
-   */
-  uiOrder: float
-
-  /**
-   * [NoTranslate]
-   */
-  uiIconPath: string
-
-  uiIconPathsStuff: Array<IconForStuffAppearance>
-
-  uiIconOffset: Vector2
-
-  /**
-   * @default Color.white
-   */
-  uiIconColor: Color
-
-  /**
-   * @default -1
-   */
-  uiIconForStackCount: int
-
-  blueprintDef: ThingDef
-
-  installBlueprintDef: ThingDef
-
-  frameDef: ThingDef
-
-  placeWorkersInstantiatedInt: Array<PlaceWorker>
-
-  /**
-   * @default BaseContent.BadGraphic
-   */
-  graphic: Graphic
-
-  /**
-   * @default BaseContent.BadTex
-   */
-  uiIcon: Texture2D
-
-  stuffUiIcons: Map<StuffAppearanceDef, Texture2D>
-
-  uiIconAngle: float
-
-  /**
-   * @default []
-   */
-  tmpCostList: Array<string>
-
-  tmpHyperlinks: Array<Dialog_InfoCard['Hyperlink']>
-}
-
-export interface ThingDef extends BuildableDef {
-  thingClass: System['Type']
-
-  category: ThingCategory
-
-  tickerType: TickerType
-
-  /**
-   * @default 1
-   */
-  stackLimit: int
-
-  /**
-   * @default IntVec2.One
-   */
-  size: IntVec2
-
-  /**
-   * @default true
-   */
-  destroyable: boolean
-
-  /**
-   * @default true
-   */
-  rotatable: boolean
-
-  smallVolume: boolean
-
-  useHitPoints: boolean
-
-  receivesSignals: boolean
-
-  /**
-   * @default []
-   */
-  comps: Array<Partial<CompProperties>>
-
-  /**
-   * @default []
-   */
-  virtualDefs: Array<ThingDef>
-
-  virtualDefParent: ThingDef
-
-  /**
-   * [NoTranslate]
-   */
-  devNote: string
-
-  killedLeavingsRanges: Array<ThingDefCountRangeClass>
-
-  killedLeavings: Array<ThingDefCountClass>
-
-  killedLeavingsPlayerHostile: Array<ThingDefCountClass>
-
-  /**
-   * @default 1f
-   */
-  killedLeavingsChance: float
-
-  forceLeavingsAllowed: boolean
-
-  butcherProducts: Array<ThingDefCountClass>
-
-  smeltProducts: Array<ThingDefCountClass>
-
-  smeltable: boolean
-
-  burnableByRecipe: boolean
-
-  randomizeRotationOnSpawn: boolean
-
-  damageMultipliers: Array<DamageMultiplier>
-
-  isTechHediff: boolean
-
-  recipeMaker: RecipeMakerProperties
-
-  minifiedDef: ThingDef
-
-  isUnfinishedThing: boolean
-
-  leaveResourcesWhenKilled: boolean
-
-  slagDef: ThingDef
-
-  isFrameInt: boolean
-
-  multipleInteractionCellOffsets: Array<IntVec3>
-
-  /**
-   * @default IntVec3.Zero
-   */
-  interactionCellOffset: IntVec2
-
-  hasInteractionCell: boolean
-
-  interactionCellIcon: ThingDef
-
-  interactionCellIconReverse: boolean
-
-  filthLeaving: ThingDef
-
-  forceDebugSpawnable: boolean
-
-  intricate: boolean
-
-  /**
-   * @default true
-   */
-  scatterableOnMapGen: boolean
-
-  deepCommonality: float
-
-  /**
-   * @default 300
-   */
-  deepCountPerCell: int
-
-  /**
-   * @default -1
-   */
-  deepCountPerPortion: int
-
-  /**
-   * @default IntRange.zero
-   */
-  deepLumpSizeRange: IntRange
-
-  /**
-   * @default 1f
-   */
-  generateCommonality: float
-
-  /**
-   * @default 1f
-   */
-  generateAllowChance: float
-
-  /**
-   * @default true
-   */
-  canOverlapZones: boolean
-
-  /**
-   * @default FloatRange.One
-   */
-  startingHpRange: FloatRange
-
-  /**
-   * [NoTranslate]
-   */
-  thingSetMakerTags: Array<string>
-
-  alwaysFlee: boolean
-
-  recipes: Array<RecipeDef>
-
-  /**
-   * @default true
-   */
-  messageOnDeteriorateInStorage: boolean
-
-  /**
-   * @default true
-   */
-  deteriorateFromEnvironmentalEffects: boolean
-
-  canDeteriorateUnspawned: boolean
-
-  /**
-   * @default true
-   */
-  canLoadIntoCaravan: boolean
-
-  isMechClusterThreat: boolean
-
-  /**
-   * @default FloatRange.Zero
-   */
-  displayNumbersBetweenSameDefDistRange: FloatRange
-
-  /**
-   * @default 1
-   */
-  minRewardCount: int
-
-  preventSkyfallersLandingOn: boolean
-
-  requiresFactionToAcquire: FactionDef
-
-  relicChance: float
-
-  orderedTakeGroup: OrderedTakeGroupDef
-
-  allowedArchonexusCount: int
-
-  possessionCount: int
-
-  notifyMapRemoved: boolean
-
-  /**
-   * @default true
-   */
-  canScatterOver: boolean
-
-  /**
-   * @default true
-   */
-  genericMarketSellable: boolean
-
-  drawHighlight: boolean
-
-  highlightColor: Color | undefined // ?
-
-  autoTargetNearbyIdenticalThings: boolean
-
-  preventDroppingThingsOn: boolean
-
-  hiddenWhileUndiscovered: boolean
-
-  disableImpassableShotOverConfigError: boolean
-
-  /**
-   * @default true
-   */
-  showInSearch: boolean
-
-  graphicData: GraphicData
-
-  /**
-   * @default DrawerType.RealtimeOnly
-   */
-  drawerType: DrawerType
-
-  drawOffscreen: boolean
-
-  colorGenerator: ColorGenerator
-
-  /**
-   * @default 99999f
-   */
-  hideAtSnowDepth: float
-
-  /**
-   * @default true
-   */
-  drawDamagedOverlay: boolean
-
-  castEdgeShadows: boolean
-
-  staticSunShadowHeight: float
-
-  useSameGraphicForGhost: boolean
-
-  useBlueprintGraphicAsGhost: boolean
-
-  randomStyle: Array<ThingStyleChance>
-
-  randomStyleChance: float
-
-  canEditAnyStyle: boolean
-
-  defaultStuff: ThingDef
-
-  killedLeavingsExpandRect: int
-
-  /**
-   * @default 1f
-   */
-  minifiedDrawScale: float
-
-  /**
-   * @default Rot4.Invalid
-   */
-  overrideMinifiedRot: Rot4
-
-  /**
-   * @default Vector3.zero
-   */
-  minifiedDrawOffset: IntVec3
-
-  /**
-   * @default 1f
-   */
-  deselectedSelectionBracketFactor: float
-
-  selectable: boolean
-
-  containedPawnsSelectable: boolean
-
-  containedItemsSelectable: boolean
-
-  neverMultiSelect: boolean
-
-  isAutoAttackableMapObject: boolean
-
-  hasTooltip: boolean
-
-  inspectorTabs: Array<System['Type']>
-
-  inspectorTabsResolved: Array<InspectTabBase>
-
-  seeThroughFog: boolean
-
-  drawGUIOverlay: boolean
-
-  /**
-   * @default true
-   */
-  drawGUIOverlayQuality: boolean
-
-  resourceReadoutPriority: ResourceCountPriority
-
-  resourceReadoutAlwaysShow: boolean
-
-  drawPlaceWorkersWhileSelected: boolean
-
-  drawPlaceWorkersWhileInstallBlueprintSelected: boolean
-
-  storedConceptLearnOpportunity: ConceptDef
-
-  /**
-   * @default 1f
-   */
-  uiIconScale: float
-
-  hasCustomRectForSelector: boolean
-
-  hideStats: boolean
-
-  hideInspect: boolean
-
-  onlyShowInspectString: boolean
-
-  hideMainDesc: boolean
-
-  alwaysHaulable: boolean
-
-  designateHaulable: boolean
-
-  thingCategories: Array<ThingCategoryDef>
-
-  mineable: boolean
-
-  socialPropernessMatters: boolean
-
-  /**
-   * @default true
-   */
-  stealable: boolean
-
-  soundSpawned: SoundDef
-
-  soundDrop: SoundDef
-
-  soundPickup: SoundDef
-
-  soundInteract: SoundDef
-
-  soundImpactDefault: SoundDef
-
-  soundPlayInstrument: SoundDef
-
-  soundOpen: SoundDef
-
-  saveCompressible: boolean
-
-  /**
-   * @default true
-   */
-  isSaveable: boolean
-
-  holdsRoof: boolean
-
-  fillPercent: float
-
-  coversFloor: boolean
-
-  neverOverlapFloors: boolean
-
-  surfaceType: SurfaceType
-
-  wipesPlants: boolean
-
-  blockPlants: boolean
-
-  blockLight: boolean
-
-  blockWind: boolean
-
-  blockWeather: boolean
-
-  tradeability: Tradeability
-
-  /**
-   * @todo [NoTranslate]
-   */
-  tradeTags: Array<string>
-
-  tradeNeverStack: boolean
-
-  tradeNeverGenerateStacked: boolean
-
-  /**
-   * @default true
-   */
-  healthAffectsPrice: boolean
-
-  colorGeneratorInTraderStock: ColorGenerator
-
-  verbs: Array<VerbProperties>
-
-  tools: Array<Tool>
-
-  equippedAngleOffset: float
-
-  equippedDistanceOffset: float
-
-  equipmentType: EquipmentType
-
-  techLevel: TechLevel
-
-  weaponClasses: Array<WeaponClassDef>
-
-  /**
-   * @todo [NoTranslate]
-   */
-  weaponTags: Array<string>
-
-  /**
-   * @todo [NoTranslate]
-   */
-  techHediffsTags: Array<string>
-
-  violentTechHediff: boolean
-
-  destroyOnDrop: boolean
-
-  equippedStatOffsets: StatModifier
-
-  meleeHitSound: SoundDef
-
-  /**
-   * @default 1f
-   */
-  recoilPower: float
-
-  /**
-   * @default 10f
-   */
-  recoilRelaxation: float
-
-  /**
-   * @default true
-   */
-  rotateInShelves: boolean
-
-  /**
-   * @default true
-   */
-  mergeVerbGizmos: boolean
-
-  entityDefToBuild: BuildableDef
-
-  projectileWhenLoaded: ThingDef
-
-  ideoBuildingNamerBase: RulePackDef
-
-  entityCodexEntry: EntityCodexEntryDef
-
-  ingestible: IngestibleProperties
-
-  filth: FilthProperties
-
-  gas: GasProperties
-
-  building: BuildingProperties
-
-  race: RaceProperties
-
-  apparel: ApparelProperties
-
-  mote: MoteProperties
-
-  plant: PlantProperties
-
-  projectile: ProjectileProperties
-
-  stuffProps: StuffProperties
-
-  skyfaller: SkyfallerProperties
-
-  pawnFlyer: PawnFlyerProperties
-
-  ritualFocus: RitualFocusProperties
-
-  ingredient: IngredientProperties
-
-  /**
-   * @default true
-   */
-  canBeUsedUnderRoof: boolean
-
-  descriptionDetailedCached: string
-
-  interactionCellGraphic: Graphic
-
-  isNaturalOrganCached: boolean | undefined
-
-  hasSunShadowsCached: boolean | undefined
-
-  cachedRelevantStyleCategories: Array<StyleCategoryDef>
-
-  allRecipesCached: Array<RecipeDef>
-
-  /**
-   * @default []
-   */
-  EmptyVerbPropertiesList: Array<VerbProperties>
-
-  concreteExamplesInt: Map<ThingDef, Thing>
-}
+// TODO: to categories
+export type SoundDefName =
+  | 'Shot_AssaultRifle'
+  | 'Recipe_Smith'
+  | 'Interact_Rifle'
+  | 'GunTail_Medium'
+  | `${string}_${string}_${string}`
 
 // #region
 // TODO
-interface Thing {}
-interface StuffProperties {}
-interface ProjectileProperties {}
-interface PlantProperties {}
-interface RaceProperties {}
-interface ApparelProperties {}
-interface MoteProperties {}
-interface BuildingProperties {}
-interface GasProperties {}
-interface FilthProperties {}
-interface DefHyperlink {}
-interface DefModExtension {}
-interface ModContentPack {}
+export interface Thing {}
+export interface StuffProperties {}
+export interface ProjectileProperties {}
+export interface PlantProperties {}
+export interface RaceProperties {}
+export interface ApparelProperties {}
+export interface MoteProperties {}
+export interface BuildingProperties {}
+export interface GasProperties {}
+export interface FilthProperties {}
+export interface DefHyperlink {}
+export interface DefModExtension {}
+export interface ModContentPack {}
 
-interface Traversability {}
-interface ThingDefCountClass {}
-interface StuffCategoryDef {}
-interface CostListForDifficulty {}
-interface StyleCategoryDef {}
-interface TerrainAffordanceDef {}
-interface ResearchProjectDef {}
-interface EffecterDef {}
-interface ColorForStuff {}
-interface ThingCategory {}
-interface DesignationCategoryDef {}
-interface DesignatorDropdownGroupDef {}
-interface KeyBindingDef {}
-interface IconForStuffAppearance {}
-interface Vector2 {}
-interface PlaceWorker {}
-interface Graphic {}
-interface Texture2D {}
-interface StuffAppearanceDef {}
-interface TickerType {}
-interface IntVec2 {}
-interface IntVec3 {}
-interface CompProperties {} // TODO: Gen
-interface ThingDefCountRangeClass {}
-interface DamageMultiplier {}
-interface RecipeMakerProperties {}
-interface IntRange {}
-interface FloatRange {}
-interface RecipeDef {}
-interface FactionDef {}
-interface OrderedTakeGroupDef {}
-interface GraphicData {}
-interface ColorGenerator {}
-interface ThingStyleChance {}
-interface InspectTabBase {}
-interface ResourceCountPriority {}
-interface ConceptDef {}
-interface ThingCategoryDef {}
-interface SoundDef {}
-interface SurfaceType {}
-interface VerbProperties {}
-interface Tool {}
-interface EquipmentType {}
-interface WeaponClassDef {}
-interface RulePackDef {}
-interface EntityCodexEntryDef {}
-interface IngestibleProperties {}
-interface IngredientProperties {}
-interface RitualFocusProperties {}
-interface PawnFlyerProperties {}
-interface SkyfallerProperties {}
+export interface Traversability {}
+export interface ThingDefCountClass {}
+export interface StuffCategoryDef {}
+export interface CostListForDifficulty {}
+export interface StyleCategoryDef {}
+export interface TerrainAffordanceDef {}
+export type ResearchProjectDefName =
+  | 'Gunsmithing'
+  | 'PrecisionRifling'
+  | CustomName
+export interface ColorForStuff {}
+export interface ThingCategory {}
+export interface DesignationCategoryDef {}
+export interface DesignatorDropdownGroupDef {}
+export interface KeyBindingDef {}
+export interface IconForStuffAppearance {}
+export interface Vector2 {}
+export interface Vector3 {}
+export interface PlaceWorker {}
+export interface Graphic {}
+export interface Texture2D {}
+export interface StuffAppearanceDef {}
+export interface TickerType {}
+export interface IntVec2 {}
+export interface IntVec3 {}
+export interface CompProperties {} // TODO: Gen
+export interface ThingDefCountRangeClass {}
+export interface DamageMultiplier {}
 
-interface System {
+export interface ThingFilter {}
+export interface SkillRequirement {} // TODO: spec
+
+export type SkillDefName = 'Crafting' | CustomName
+
+export interface WorkTypeDef {}
+export interface IntRange {}
+export interface MemeDef {}
+export interface FloatRange {}
+export interface RecipeDef {}
+export interface FactionDef {}
+export interface OrderedTakeGroupDef {}
+
+export interface ShaderTypeDef {}
+export interface ShaderParameter {}
+export interface AttachPoint {}
+
+export interface ShadowData {}
+export interface DamageGraphicData {}
+export interface LinkDrawerType {}
+export interface LinkFlags {}
+export interface AsymmetricLinkData {}
+
+export interface ColorGenerator {}
+export interface ThingStyleChance {}
+export interface InspectTabBase {}
+export interface ResourceCountPriority {}
+export interface ConceptDef {}
+export interface ThingCategoryDef {}
+
+export interface SurfaceType {}
+
+export interface EquipmentType {}
+export interface WeaponClassDef {}
+export interface RulePackDef {}
+export interface EntityCodexEntryDef {}
+export interface IngestibleProperties {}
+export interface IngredientProperties {}
+export interface RitualFocusProperties {}
+export interface PawnFlyerProperties {}
+export interface SkyfallerProperties {}
+
+export interface System {
   Type: unknown
 }
 
-interface Dialog_InfoCard {
+export interface Dialog_InfoCard {
   Hyperlink: unknown
 }
 
-type int = number
-type float = number
-type ushort = unknown
-type TaggedString = unknown
-type Regex = RegExp
+export type int = number
+export type float = number
+export type ushort = unknown
+export type TaggedString = unknown
+export type Regex = RegExp
 
-enum Rot4 {}
+export type Rot4 = unknown
 
-enum Color {
-  white = 'white',
-}
+export type Color = 'white'
+
+export type StatDef = unknown // TODO:
 
 // as Enum
-type Tradeability = 'All'
+export type Tradeability = 'All'
 
-type DrawerType = 'RealtimeOnly' | 'MapMeshOnly'
+export type DrawerType = 'RealtimeOnly' | 'MapMeshOnly'
 
-type TechLevel =
+export type TechLevel =
   | 'Undefined'
   | 'Animal'
   | 'Neolithic'
@@ -861,7 +156,7 @@ type TechLevel =
   | 'Ultra'
   | 'Archotech'
 
-type AltitudeLayer =
+export type AltitudeLayer =
   | 'Terrain'
   | 'TerrainScatter'
   | 'Floor'

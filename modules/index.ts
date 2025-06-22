@@ -63,14 +63,127 @@ const qualitiable: Partial<ThingDef> = {
   comps: [{ compClass: 'CompQuality' }],
 }
 
-/**
- * 有必要沿用 Name, ParentName, Abstract 这套继承系统吗？
- * rim-def 使用组合模式！
- * [compose]
- */
+const makeable: Partial<ThingDef> = {
+  _Name: 'BaseMakeableGun',
+  _ParentName: 'BaseGunWithQuality',
+  _Abstract: 'True',
+  recipeMaker: {
+    workSpeedStat: 'GeneralLaborSpeed',
+    workSkill: 'Crafting',
+    effectWorking: 'Smith',
+    soundWorking: 'Recipe_Smith',
+    recipeUsers: ['TableMachining'],
+    unfinishedThingDef: 'UnfinishedGun',
+    researchPrerequisite: 'Gunsmithing',
+  },
+}
+
+const humanMakeableGun: Partial<ThingDef> = {
+  _Name: 'BaseHumanMakeableGun',
+  _ParentName: 'BaseMakeableGun',
+  _Abstract: 'True',
+  weaponTags: ['Gun'],
+  tradeTags: ['WeaponRanged'],
+  comps: [
+    {
+      _Class: 'CompProperties_Biocodable',
+    },
+  ],
+}
 
 import { compose } from '../helpers/compose'
-const result = [weapon, gun, qualitiable].reduce((a, b) => compose(a, b))
+const humanGun = [weapon, gun, qualitiable, makeable, humanMakeableGun].reduce(
+  (a, b) => compose(a, b)
+)
 
-const xml = buildXML([result], 'ThingDef')
-console.log(xml)
+interface Person {
+  name: string
+  age: number
+}
+
+interface DefinePerson {
+  name: (value: string) => DefinePerson
+  age: (value: number) => DefinePerson
+}
+
+
+
+
+
+// const definer = new Definer('Mona')
+
+// const rifle = definer.define('Rifle')
+// rifle.weaponTags(['Gun'])
+
+// const assaultRifle = definer.define('AssaultRifle')
+// assaultRifle.useCompose([rifle])
+// assaultRifle.label('assault rifle')
+
+// Definer.preview(assaultRifle)
+
+//
+const _assaultRifle: Partial<ThingDef> = {
+  _ParentName: humanMakeableGun._Name,
+  defName: 'Gun_AssaultRifle',
+  label: 'assault rifle',
+  description:
+    'A general-purpose gas-operated assault rifle for field or urban combat. It has good range, decent power, and good accuracy.',
+  graphicData: {
+    texPath: 'Things/Item/Equipment/WeaponRanged/AssaultRifle',
+    graphicClass: 'Graphic_Single',
+  },
+  soundInteract: 'Interact_Rifle',
+  recipeMaker: {
+    researchPrerequisite: 'PrecisionRifling',
+    skillRequirements: {
+      Crafting: 6,
+    },
+    displayPriority: 420,
+  },
+  thingSetMakerTags: ['RewardStandardQualitySuper'],
+  statBases: {
+    WorkToMake: 40000,
+    Mass: 3.5,
+    AccuracyTouch: 0.6,
+    AccuracyShort: 0.7,
+    AccuracyMedium: 0.65,
+    AccuracyLong: 0.55,
+    RangedWeapon_Cooldown: 1.7,
+  },
+  costList: {
+    Steel: 60,
+    ComponentIndustrial: 7,
+  },
+  verbs: [
+    {
+      verbClass: 'Verb_Shoot',
+      hasStandardCommand: true,
+      defaultProjectile: 'Bullet_AssaultRifle',
+      warmupTime: 1.0,
+      range: 30.9,
+      burstShotCount: 3,
+      ticksBetweenBurstShots: 10,
+      soundCast: 'Shot_AssaultRifle',
+      soundCastTail: 'GunTail_Medium',
+      muzzleFlashScale: 9,
+    },
+  ],
+  weaponTags: ['AssaultRifle', 'IndustrialGunAdvanced'],
+  tools: [
+    {
+      label: 'stock',
+      capacities: ['Blunt'],
+      power: 9,
+      cooldownTime: 2,
+    },
+    {
+      label: 'barrel',
+      capacities: ['Blunt', 'Poke'],
+      power: 9,
+      cooldownTime: 2,
+    },
+  ],
+}
+
+// const xml = buildXML([baseGun], 'ThingDef')
+// console.log(xml)

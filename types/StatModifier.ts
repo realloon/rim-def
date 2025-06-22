@@ -1,3 +1,5 @@
+import { float, int, StatDef } from '.'
+
 export interface StatModifier {
   MaxHitPoints: StatDef
 
@@ -19,11 +21,11 @@ export interface StatModifier {
 
   DeteriorationRate: StatDef
 
-  WorkToMake: StatDef
+  WorkToMake: int
 
   WorkToBuild: StatDef
 
-  Mass: StatDef
+  Mass: float
 
   ConstructionSpeedFactor: StatDef
 
@@ -396,12 +398,12 @@ export interface StatModifier {
   StuffPower_Armor_Heat: StatDef
   StuffPower_Insulation_Cold: StatDef
   StuffPower_Insulation_Heat: StatDef
-  RangedWeapon_Cooldown: StatDef
+  RangedWeapon_Cooldown: float
   RangedWeapon_DamageMultiplier: StatDef
-  AccuracyTouch: StatDef
-  AccuracyShort: StatDef
-  AccuracyMedium: StatDef
-  AccuracyLong: StatDef
+  AccuracyTouch: float
+  AccuracyShort: float
+  AccuracyMedium: float
+  AccuracyLong: float
   ShootingAccuracyFactor_Touch: StatDef
   ShootingAccuracyFactor_Short: StatDef
   ShootingAccuracyFactor_Medium: StatDef
@@ -482,5 +484,3 @@ export interface StatModifier {
   FilthMultiplier: StatDef
   CleaningTimeFactor: StatDef
 }
-
-export type StatDef = unknown // TODO:
