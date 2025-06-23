@@ -1,24 +1,20 @@
 {
   "name": "rim-def",
   "version": "0.6.6",
-  "description": "Programmatically declaring Defs, Patches, and About.",
-  "main": "./main.ts",
-  "keywords": [
-    "rim-def",
-    "rimworld"
-  ],
   "author": "Vector",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/realloon/rim-def"
   },
-  "homepage": "https://github.com/realloon/rim-def",
-  "devDependencies": {
-    "@types/node": "^22.10.2",
-    "typescript": "^5.7.2"
-  },
+  "main": "./main.ts",
   "dependencies": {
     "fast-xml-parser": "^4.5.1"
-  }
+  },
+  "description": "Programmatically declaring Defs, Patches, and About.",
+  "homepage": "https://github.com/realloon/rim-def",
+  "keywords": [
+    "rim-def",
+    "rimworld"
+  ],
+  "license": "ISC"
 }
